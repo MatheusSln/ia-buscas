@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import espacoDeEstados.*;
 import estrategiasDeBusca.cega.*;
+import estrategiasDeBusca.heuristica.*;
 public class Main {
 
 	@SuppressWarnings("rawtypes")
@@ -11,7 +12,11 @@ public class Main {
 		System.out.println("Escolha um tipo de estratégia: \n "
 						+ " 1 - Busca não informada \n "
 						+ " 2 - Busca informada \n "
-						+ " 3 - Busca em largura");
+						+ " 3 - Busca em largura \n "
+						+ " 4 - AStar \n "
+						+ " 5 - Melhor Primeiro \n "
+						+ " 6 - RamoVinculado \n "
+						+ " 7 - Escalada \n ");
 		
 		int estrategia = teclado.nextInt();
 		
@@ -26,6 +31,18 @@ public class Main {
 				break;
 			case 3:
 				BuscaEmLargura();
+				break;
+			case 4:
+				AEstrela();
+				break;
+			case 5:
+				MelhorPrimeiro();
+				break;
+			case 6:
+				RamoVinculado();
+				break;
+			case 7:
+				Escalada();
 				break;
 			default: 
 				System.out.println("Opção não encontrada :/");
@@ -128,5 +145,93 @@ public class Main {
 		
 		 System.exit(0);
 	}
+	
+	private static void AEstrela() {
+		
+		char[] cfgIni = {'1','2','3','7','4',' ','5','8','6'};
+		char[] cfgFim = {'1','2','3','4','5','6','7','8',' '};
+		
+		SetCustosEAvaliacoes(cfgIni, cfgFim);
+		
+		AStar aStar = new AStar();
+		
+		aStar.setInicio(puzzleInicial);
+		aStar.setObjetivo(puzzleFinal);
+		
+		aStar.buscar();
+		
+		for(Estado e : aStar.getCaminhoSolucao()) {
+			System.out.println(e);
+			System.out.println(" ");
+		}
+		
+		 System.exit(0);
+	}
+	
+	private static void MelhorPrimeiro() {
+		
+		char[] cfgIni = {'1','2','3','4','5',' ','7','8','6'};
+		char[] cfgFim = {'1','2','3','4','5','6','7','8',' '};
+		
+		SetCustosEAvaliacoes(cfgIni, cfgFim);
+		
+		BestFirst bestFirst = new BestFirst();
+		
+		bestFirst.setInicio(puzzleInicial);
+		bestFirst.setObjetivo(puzzleFinal);
+		
+		bestFirst.buscar();
+		
+		for(Estado e : bestFirst.getCaminhoSolucao()) {
+			System.out.println(e);
+			System.out.println(" ");
+		}
+		
+		 System.exit(0);		
+	}
+	
+	private static void RamoVinculado() {
+		
+		char[] cfgIni = {' ','1','2','3','4','5','6','7','8'};
+		char[] cfgFim = {'1','2','3','4','5',' ','6','7','8'};
+		
+		SetCustosEAvaliacoes(cfgIni, cfgFim);
+		
+		BranchAndBound branchAndBound = new BranchAndBound();
+		
+		branchAndBound.setInicio(puzzleInicial);
+		branchAndBound.setObjetivo(puzzleFinal);
+		
+		branchAndBound.buscar();
+		
+		for(Estado e : branchAndBound.getCaminhoSolucao()) {
+			System.out.println(e);
+			System.out.println(" ");
+		}
+		
+		 System.exit(0);		
+	}
+	
+	private static void Escalada() {
+		
+		char[] cfgIni = {'1','2','3','4','5','6',' ','7','8'};
+		char[] cfgFim = {'1','2','3','4','5','6','7','8',' '};
+		
+		SetCustosEAvaliacoes(cfgIni, cfgFim);
+		
+		HillClimbing hillClimbing = new HillClimbing();
+		
+		hillClimbing.setInicio(puzzleInicial);
+		hillClimbing.setObjetivo(puzzleFinal);
+		
+		hillClimbing.buscar();
+		
+		for(Estado e : hillClimbing.getCaminhoSolucao()) {
+			System.out.println(e);
+			System.out.println(" ");
+		}
+		
+		 System.exit(0);		
+	}	
 
 }
