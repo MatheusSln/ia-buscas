@@ -13,7 +13,7 @@ public class Main {
 						+ " 1 - Busca não informada \n "
 						+ " 2 - Busca informada \n "
 						+ " 3 - Busca em largura \n "
-						+ " 4 - AStar \n "
+						+ " 4 - Busca Ótima \n "
 						+ " 5 - Melhor Primeiro \n "
 						+ " 6 - RamoVinculado \n "
 						+ " 7 - Escalada \n ");
@@ -148,8 +148,8 @@ public class Main {
 	
 	private static void AEstrela() {
 		
-		char[] cfgIni = {'1','2','3','7','4',' ','5','8','6'};
-		char[] cfgFim = {'1','2','3','4','5','6','7','8',' '};
+		char[] cfgIni = {'1','2','3',' ','4','5','6','7','8'};
+		char[] cfgFim = {'1','2','3','4','5',' ','6','7','8'};
 		
 		SetCustosEAvaliacoes(cfgIni, cfgFim);
 		
@@ -170,8 +170,8 @@ public class Main {
 	
 	private static void MelhorPrimeiro() {
 		
-		char[] cfgIni = {'1','2','3','4','5',' ','7','8','6'};
-		char[] cfgFim = {'1','2','3','4','5','6','7','8',' '};
+		char[] cfgIni = {'1','2','3','4','5',' ','6','7','8'};
+		char[] cfgFim = {'1','2','3','4','5','6','7',' ','8'};
 		
 		SetCustosEAvaliacoes(cfgIni, cfgFim);
 		
@@ -193,7 +193,7 @@ public class Main {
 	private static void RamoVinculado() {
 		
 		char[] cfgIni = {' ','1','2','3','4','5','6','7','8'};
-		char[] cfgFim = {'1','2','3','4','5',' ','6','7','8'};
+		char[] cfgFim = {'1','2','3',' ','4','5','6','7','8'};
 		
 		SetCustosEAvaliacoes(cfgIni, cfgFim);
 		
